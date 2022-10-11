@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import java.net.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.collections.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="767.0" styleClass="root" stylesheets="@../styles/afterlogin.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Emptyrooms">
+   <children>
+      <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="565.0" prefWidth="269.0" style="-fx-background-color: #82b6fd; -fx-background-radius: 15;" styleClass="roominput" stylesheets="@../styles/afterlogin.css">
+         <children>
+            <Label layoutX="20.0" layoutY="42.0" text="Room #:">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="20.0" layoutY="77.0" text="Room Type:">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="20.0" layoutY="116.0" text="Room Status:">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="20.0" layoutY="150.0" text="Price:">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnadd" layoutX="60.0" layoutY="282.0" mnemonicParsing="false" onMouseClicked="#onadd" prefHeight="45.0" prefWidth="65.0" styleClass="button-menue" stylesheets="@../styles/afterlogin.css" text="Add" />
+            <Button fx:id="clear" layoutX="148.0" layoutY="282.0" mnemonicParsing="false" onMouseClicked="#onclear" prefHeight="45.0" prefWidth="65.0" styleClass="button-menue" stylesheets="@../styles/afterlogin.css" text="Clear" />
+            <ComboBox fx:id="roomtype" layoutX="132.0" layoutY="78.0" onAction="#onroomtype" prefHeight="25.0" prefWidth="124.0" styleClass="combobox" stylesheets="@../styles/afterlogin.css">
+                 <!--   <items>
+                     <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="value1" />
+                        <String fx:value="value2" />
+                     </FXCollections>
+
+
+                    </items>
+               <value>
+                  <String fx:value="value2" />
+               </value>-->
+                    </ComboBox>
+            <ComboBox fx:id="roomstatus" layoutX="132.0" layoutY="117.0" onAction="#onroomstatus" prefHeight="25.0" prefWidth="124.0" styleClass="combobox" stylesheets="@../styles/afterlogin.css" />
+            <TextField fx:id="roomno" disable="true" layoutX="133.0" layoutY="43.0" prefHeight="25.0" prefWidth="124.0" styleClass="roominput" stylesheets="@../styles/afterlogin.css" />
+            <TextField fx:id="price" layoutX="133.0" layoutY="151.0" onKeyPressed="#onprice" prefHeight="25.0" prefWidth="124.0" styleClass="roominput" stylesheets="@../styles/afterlogin.css" />
+            <Button fx:id="checkin" layoutX="60.0" layoutY="460.0" mnemonicParsing="false" onMouseClicked="#oncheckin" prefHeight="45.0" prefWidth="152.0" styleClass="button-menue" stylesheets="@../styles/afterlogin.css" text="Check-In" />
+            <Button layoutX="60.0" layoutY="338.0" mnemonicParsing="false" onMouseClicked="#onupdate" prefHeight="45.0" prefWidth="152.0" styleClass="button-menue" stylesheets="@../styles/afterlogin.css" text="Update" />
+         </children>
+      </AnchorPane>
+      <TableView fx:id="roomtable" layoutX="309.0" layoutY="57.0" onMouseClicked="#ontable" prefHeight="522.0" prefWidth="439.0" styleClass="table" stylesheets="@../styles/afterlogin.css">
+        <columns>
+          <TableColumn fx:id="col_roomno" prefWidth="75.0" styleClass="tableitem" text="Room #" />
+          <TableColumn fx:id="col_roomtype" prefWidth="136.0" styleClass="tableitem" text="Room Type" />
+            <TableColumn fx:id="col_roomstatus" prefWidth="125.0" styleClass="tableitem" text="Status" />
+            <TableColumn fx:id="col_roomprice" prefWidth="101.0" styleClass="tableitem" text="Price" />
+        </columns>
+         <effect>
+            <DropShadow color="#7fc3eb" />
+         </effect>
+      </TableView>
+      <TextField fx:id="searchbox" layoutX="309.0" layoutY="14.0" onKeyReleased="#onsearch" prefHeight="31.0" prefWidth="439.0" styleClass="searchbox" stylesheets="@../styles/afterlogin.css">
+         <effect>
+            <DropShadow color="#171717" />
+         </effect>
+      </TextField>
+   </children>
+
+</AnchorPane>

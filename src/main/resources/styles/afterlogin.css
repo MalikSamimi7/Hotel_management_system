@@ -1,0 +1,100 @@
+.menue-Hbox:hover
+{
+    -fx-background-color: #52a6ff;
+    -fx-background-radius: 40;
+    -fx-cursor: hand;
+
+}
+.menu
+{
+    -fx-background-color: #5d87e2;
+    -fx-background-radius: 40;
+}
+.checkpane
+{
+    -fx-background-color: linear-gradient(to left top , #16b4f3, #29ceff);
+    -fx-background-radius: 10;
+}
+.links
+{
+    -fx-border-style: none;
+}
+.button-menue
+{
+    -fx-background-color:linear-gradient(to left top , #3669ce, #3070d9);
+    -fx-background-radius: 10;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-font-size: 12;
+}
+.combobox
+{
+    -fx-background-color: #7096e2;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+
+}
+.combobox > items
+{
+    -fx-background-color: #7096e2;
+}
+.roominput
+{
+    -fx-border-style: none;
+    -fx-background-color: #7096e2;
+    -fx-text-fill: white;
+    -fx-font-size: 13;
+    -fx-font-weight: bold;
+
+}
+.searchbox
+{
+    
+    -fx-background-image: url("../resources/search.png");
+    /*-fx-border-color: -fx-control-inner-background;*/
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: right center;
+    -fx-background-size: 25;
+    -fx-text-alignment: center;
+    -fx-font-weight: bold;
+}
+
+.table
+{
+    -fx-background-color: #819fde;
+    -fx-border-width: 10px;
+     -fx-border-radius: 40;
+
+}
+.tableitem{
+    -fx-background-color:#7096e2;
+    -fx-border-color:black;
+    -fx-border-width: 0.1;
+    -fx-font-size: 13;
+    -fx-font-weight:bolder ;
+    -fx-alignment: center;
+
+}
+.combo-box:disabled ,.combo-box:disabled >*
+{
+    -fx-opacity: 1.0;
+    -fx-font-weight: bold;
+}
+.combo-box>*
+{
+    -fx-text-fill: white;
+}
+.text-field:disabled ,.text-field:disabled >*
+{
+    -fx-opacity: 1.0;
+    -fx-font-weight: bold;
+}
+.table-row-cell:selected {
+
+    -fx-border-insets: -2;
+}
+.table-row-cell:selected .text {
+    -fx-fill: white;
+
+
+}
