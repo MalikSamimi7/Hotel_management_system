@@ -98,3 +98,7 @@
 
 
 }
+.tableitem#checkedout
+{
+    -fx-alignment: left;
+}

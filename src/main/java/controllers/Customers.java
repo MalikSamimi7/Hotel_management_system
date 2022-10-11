@@ -2,6 +2,8 @@ package controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -15,6 +17,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
 
 public class Customers implements Initializable {
     public TextField searchbox;
@@ -27,11 +30,58 @@ public class Customers implements Initializable {
     public TableColumn col_id;
     public TableView customertable;
     ObservableList<customermodel> customerlist= FXCollections.observableArrayList();
+    FilteredList<customermodel> filteredList=new FilteredList<>(customerlist, e ->true);
     dbconnector connector;
     Connection connection;
 
     public void onsearchtyoe(KeyEvent keyEvent) {
-        System.out.println("typed ");
+
+        searchbox.textProperty().addListener((observable, oldValue, newValue) -> {
+
+            filteredList.setPredicate((Predicate<? super customermodel>) customermodel ->{
+                if(newValue==null || newValue.isEmpty())
+                {
+                    return true;
+                }
+                String lnewvallue=newValue.toLowerCase();
+                if(customermodel.id.contains(lnewvallue))
+                {
+                    return true;
+                }
+                else if(customermodel.firstname.contains(lnewvallue))
+                {
+                    return true;
+                }
+                else if(customermodel.lastname.contains(lnewvallue))
+                {
+                    return true;
+                }
+                else if(customermodel.phone.contains(lnewvallue))
+                {
+                    return true;
+                }
+                else if(customermodel.totalpayment.contains(lnewvallue))
+                {
+                    return true;
+                }
+                else if(customermodel.checkedindate.contains(lnewvallue))
+                {
+                    return true;
+                }
+                else if(customermodel.checkedoutdate.contains(lnewvallue))
+                {
+                    return true;
+                }
+
+                return false;
+            });
+
+            SortedList<customermodel> sortedList=new SortedList<>(filteredList);
+            sortedList.comparatorProperty().bind(customertable.comparatorProperty());
+            customertable.setItems(sortedList);
+
+        });
+
     }
 
     @Override

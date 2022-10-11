@@ -1,34 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import java.lang.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" fx:controller="controllers.Customers" minWidth="-Infinity" prefHeight="600.0" prefWidth="767.0" styleClass="root" stylesheets="@../styles/afterlogin.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <TableView fx:id="customertable" layoutX="14.0" layoutY="47.0" prefHeight="530.0" prefWidth="741.0" styleClass="table" stylesheets="@../styles/afterlogin.css">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="767.0" stylesheets="@../styles/afterlogin.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Customers">
+    <children>
+      
+        <TextField fx:id="searchbox" layoutX="14.0" layoutY="8.0" onKeyReleased="#onsearchtyoe" prefHeight="31.0" prefWidth="175.0" styleClass="searchbox" stylesheets="@../styles/afterlogin.css">
+            <effect>
+                <DropShadow color="#171717" />
+            </effect></TextField>
+      <TableView fx:id="customertable" layoutX="14.0" layoutY="51.0" prefHeight="520.0" prefWidth="730.0" styleClass="table" stylesheets="@../styles/afterlogin.css">
         <columns>
-          <TableColumn prefWidth="72.0" styleClass="tableitem" text="Customer #" />
-          <TableColumn prefWidth="111.0" styleClass="tableitem" text="First Name" />
-            <TableColumn prefWidth="94.0" styleClass="tableitem" text="Last Name" />
-            <TableColumn prefWidth="142.0" styleClass="tableitem" text="Phone #" />
-            <TableColumn prefWidth="102.0" styleClass="tableitem" text="Total Payment" />
-            <TableColumn prefWidth="102.0" styleClass="tableitem" text="Checked-In" />
-            <TableColumn prefWidth="117.0" styleClass="tableitem" text="Checked-Out" />
+          <TableColumn fx:id="col_id" prefWidth="49.0" styleClass="tableitem" text="ID" />
+          <TableColumn fx:id="col_firstname" prefWidth="98.0" styleClass="tableitem" text="First Name" />
+            <TableColumn fx:id="col_lastname" prefWidth="107.0" styleClass="tableitem" text="Last Name" />
+            <TableColumn fx:id="col_phone" prefWidth="151.0" styleClass="tableitem" text="Phone" />
+            <TableColumn fx:id="col_total" prefWidth="98.0" styleClass="tableitem" text="Total Payment" />
+            <TableColumn fx:id="col_checkedin" prefWidth="104.0" styleClass="tableitem" text="Checked-In" />
+            <TableColumn id="checkedout" fx:id="col_checkout" prefWidth="122.0" styleClass="tableitem" text="Checked-Out" />
         </columns>
-         <effect>
-            <DropShadow color="#28b9e1" />
-         </effect>
       </TableView>
-
-      <TextField fx:id="searchbox" layoutX="14.0" layoutY="8.0" onKeyTyped="#onsearchtyoe" prefHeight="31.0" prefWidth="175.0" styleClass="searchbox" stylesheets="@../styles/afterlogin.css">
-         <effect>
-            <DropShadow color="#171717" />
-         </effect></TextField>
-   </children>
+    </children>
 </AnchorPane>
