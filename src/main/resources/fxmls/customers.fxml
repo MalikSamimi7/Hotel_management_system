@@ -14,15 +14,15 @@
             <effect>
                 <DropShadow color="#171717" />
             </effect></TextField>
-      <TableView layoutX="14.0" layoutY="51.0" prefHeight="520.0" prefWidth="730.0" styleClass="table" stylesheets="@../styles/afterlogin.css">
+      <TableView fx:id="customertable" layoutX="14.0" layoutY="51.0" prefHeight="520.0" prefWidth="730.0" styleClass="table" stylesheets="@../styles/afterlogin.css">
         <columns>
-          <TableColumn prefWidth="75.0" styleClass="tableitem" text="ID" />
-          <TableColumn prefWidth="100.0" styleClass="tableitem" text="First Name" />
-            <TableColumn prefWidth="133.0" styleClass="tableitem" text="Last Name" />
-            <TableColumn prefWidth="147.0" styleClass="tableitem" text="Phone" />
-            <TableColumn prefWidth="90.0" styleClass="tableitem" text="Total Payment" />
-            <TableColumn prefWidth="90.0" styleClass="tableitem" text="Checked-In" />
-            <TableColumn prefWidth="96.0" styleClass="tableitem" text="Checked-Out" />
+          <TableColumn fx:id="col_id" prefWidth="49.0" styleClass="tableitem" text="ID" />
+          <TableColumn fx:id="col_firstname" prefWidth="98.0" styleClass="tableitem" text="First Name" />
+            <TableColumn fx:id="col_lastname" prefWidth="107.0" styleClass="tableitem" text="Last Name" />
+            <TableColumn fx:id="col_phone" prefWidth="151.0" styleClass="tableitem" text="Phone" />
+            <TableColumn fx:id="col_total" prefWidth="98.0" styleClass="tableitem" text="Total Payment" />
+            <TableColumn fx:id="col_checkedin" prefWidth="104.0" styleClass="tableitem" text="Checked-In" />
+            <TableColumn id="checkedout" fx:id="col_checkout" prefWidth="122.0" styleClass="tableitem" text="Checked-Out" />
         </columns>
       </TableView>
     </children>
