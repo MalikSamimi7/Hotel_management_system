@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.ResourceBundle;
 
@@ -54,18 +55,18 @@ public class Dashboard implements Initializable {
     }
 
     private void getdate() throws SQLException {
-        String date="2022-10-02";
+        String date=java.time.LocalDate.now().toString();
         int t_total=0;
         int total=0;
-        int day=1;
-        int weekamount=0;
-        int weekno=1;
+
         XYChart.Series series=new XYChart.Series();
         series.setName("Amount");
+        LocalDate now=LocalDate.parse(date);
 
         connector=new dbconnector();
         connection=connector.getconnection();
         String sql="select * from customer";
+        String sql2="select * from dailyincome";
         Statement statement= connection.createStatement();
         ResultSet rs= statement.executeQuery(sql);
         while (rs.next())
@@ -78,25 +79,55 @@ public class Dashboard implements Initializable {
          }
          total=total+Integer.parseInt(rs.getString(5));
 
-            if(date-(rs.getString(6).to)==7)
-            {
-                weekamount=weekamount+Integer.parseInt(rs.getString(5));
-                day++;
-            }
-            else
-            {
-
-                series.getData().add(new XYChart.Data<>(Integer.toString(weekno),weekamount));
-
-                weekno++;
-                day=1;
-                weekamount=0;
-            }
         }
         todaybooks.setText(Integer.toString(daybooks));
         todayincome.setText(Integer.toString(t_total)+" af");
         totalincome.setText(Integer.toString(total)+" af");
+
+        //showing chart
+        LocalDate lastdate=now;
+        ResultSet rs2=statement.executeQuery(sql2);
+        String clean="delete from dailyincome";
+        int i=0;
+        while (rs2.next())
+        {
+            if(i==7)
+            {
+                statement.executeUpdate(clean);
+            }
+            //series.getData().add(new XYChart.Data<>(rs2.getString(1),Integer.parseInt(rs2.getString(2))));
+            lastdate=LocalDate.parse(rs2.getString(1));
+            i++;
+        }
+        if(lastdate.equals(null) || lastdate.equals(""))
+        {
+            lastdate=now;
+        }
+        System.out.println(lastdate);
+        System.out.println(date);
+        //if date changed add to database if not just update the amount
+
+
+        if(!(lastdate.toString().equals(date)))
+        {
+
+            String insert="insert into dailyincome values ( '"+now+"', '"+t_total+"')";
+            statement.executeUpdate(insert);
+            System.out.println("entered");
+        }
+        else
+        {
+            String update="update dailyincome set income='"+t_total+"' where date='"+date+"'  ";
+            statement.executeUpdate(update);
+        }
+        ResultSet rs3=statement.executeQuery(sql2);
+        while (rs3.next())
+        {
+            series.getData().add(new XYChart.Data<>(rs3.getString(1),Integer.parseInt(rs3.getString(2))));
+
+        }
+
         chart.getData().add(series);
-        System.out.println(weekno+" "+weekamount);
+
     }
 }
