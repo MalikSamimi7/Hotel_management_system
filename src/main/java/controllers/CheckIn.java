@@ -65,6 +65,7 @@ public class CheckIn implements Initializable{
         try {
             connectdatabase();
             set();
+            changeroomsstate("","");
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -295,6 +296,8 @@ public class CheckIn implements Initializable{
 
         if(!checkedonce) {
             addtodatabase();
+            //change room to not available state
+            changeroomsstate(roomno.getValue(),checkoutdate.getValue().toString());
             //setCustomernolabel();
             //show checkin succesfull message
             Alert a = new Alert(Alert.AlertType.INFORMATION);
@@ -311,6 +314,24 @@ public class CheckIn implements Initializable{
             a.show();
         }
 
+    }
+
+    private void changeroomsstate(String room, String nas_date) throws SQLException {
+        if(room.equals("") || nas_date.equals(""))
+        {
+            String sql="update rooms set roomstatus='"+"Available"+"' where checkoutdate='"+LocalDate.now()+"'";
+            Statement statement= connection.createStatement();
+            statement.executeUpdate(sql);
+        }
+
+
+        else
+        {
+
+            String sql="update rooms set roomstatus='"+"Not Available"+"',checkoutdate='"+nas_date+"' where roomno='"+Integer.parseInt(room)+"'";
+            Statement statement= connection.createStatement();
+            statement.executeUpdate(sql);
+        }
     }
 
     private void addtodatabase() throws SQLException {

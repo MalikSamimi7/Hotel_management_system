@@ -66,7 +66,8 @@ public class Dashboard implements Initializable {
         connector=new dbconnector();
         connection=connector.getconnection();
         String sql="select * from customer";
-        String sql2="select * from dailyincome";
+        String dailyamount="SELECT * FROM dailyincome where dailyincome.date between (date_sub(curdate(),interval 6 day)) and CURDATE()";
+
         Statement statement= connection.createStatement();
         ResultSet rs= statement.executeQuery(sql);
         while (rs.next())
@@ -86,18 +87,14 @@ public class Dashboard implements Initializable {
 
         //showing chart
         LocalDate lastdate=now;
-        ResultSet rs2=statement.executeQuery(sql2);
-        String clean="delete from dailyincome";
-        int i=0;
+        ResultSet rs2=statement.executeQuery(dailyamount);
+
         while (rs2.next())
         {
-            if(i==7)
-            {
-                statement.executeUpdate(clean);
-            }
+
             //series.getData().add(new XYChart.Data<>(rs2.getString(1),Integer.parseInt(rs2.getString(2))));
             lastdate=LocalDate.parse(rs2.getString(1));
-            i++;
+
         }
         if(lastdate.equals(null) || lastdate.equals(""))
         {
@@ -115,12 +112,12 @@ public class Dashboard implements Initializable {
             statement.executeUpdate(insert);
             System.out.println("entered");
         }
-        else
+        else if(t_total!=0)
         {
             String update="update dailyincome set income='"+t_total+"' where date='"+date+"'  ";
             statement.executeUpdate(update);
         }
-        ResultSet rs3=statement.executeQuery(sql2);
+        ResultSet rs3=statement.executeQuery(dailyamount);
         while (rs3.next())
         {
             series.getData().add(new XYChart.Data<>(rs3.getString(1),Integer.parseInt(rs3.getString(2))));
