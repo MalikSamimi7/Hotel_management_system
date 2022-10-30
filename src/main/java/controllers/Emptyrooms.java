@@ -65,8 +65,12 @@ public class Emptyrooms implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-     setChoiceBox();
+        try {
+            checkroomstatus();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        setChoiceBox();
 
 
         try {
@@ -82,14 +86,22 @@ public class Emptyrooms implements Initializable {
 
     }
 
+    private void checkroomstatus() throws SQLException {
+        String sql= "update rooms set roomstatus='Available' where checkoutdate<curdate();";
+        connector=new dbconnector();
+        connection=connector.getconnection();
+        Statement statement= connection.createStatement();
+        statement.executeUpdate(sql);
+
+    }
+
     private void loaddata() throws SQLException {
         if(!roomtable.getItems().isEmpty())
         {
            roomlist.clear();
            roomtable.setItems(roomlist);
         }
-        connector=new dbconnector();
-        connection=connector.getconnection();
+        
         String sql="select * from rooms";
         Statement statement= connection.createStatement();
         ResultSet rs= statement.executeQuery(sql);
